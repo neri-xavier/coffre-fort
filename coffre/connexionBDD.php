@@ -5,17 +5,18 @@ session_start();
 
 $email=$_POST["email"];
 $password=$_POST["password"];
-$erreur="";
-    
-    $sel=$pdo->prepare("SELECT prenom, nom from users WHERE email=? and password=? limit 1");
-    $sel->execute(array($email,password_hash($password, PASSWORD_BCRYPT)));
-    $tab=$sel->fetchAll();
-    if(count($tab)>0){
+
+global $bdd;
+
+    $connexion=$bdd->prepare("SELECT prenom, nom, password from users WHERE email=? limit 1");
+    $connexion->execute(array($email));
+    $tab=$connexion->fetchAll();
+    if(password_verify($password, $tab[0]["password"])){
         $_SESSION["prenomNom"]=ucfirst(strtolower($tab[0]["prenom"]))." ".strtoupper($tab[0]["nom"]);
         $_SESSION["autoriser"]="oui";
-        header("location:fichier.php");
+        header("location:connected.php");
     }else{
-        $erreur="Mauvais login ou mot de passe!";
+        header("location:connexion.php");
     }
     
 ?>
