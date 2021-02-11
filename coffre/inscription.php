@@ -4,7 +4,7 @@
         <title>Page d'inscription</title>
     </head>
     <body>
-    <form action="inscriptionBDD.php" method="post" class="form-inscription">
+    <form action="php/inscriptionBDD.php" method="post" class="form-inscription">
         <div class="form-inscription">
             <label for="name">Saisir votre nom: </label>
             <input type="text" name="nom" id="nom" pattern="[^\s]+" required>
@@ -42,5 +42,6 @@
     </br>
         <button type="submit">Inscription</button>
     </form>
+    <p><a href="connexion.php">Connexion</a></p>
     </body>
 </html>

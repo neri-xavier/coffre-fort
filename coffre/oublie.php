@@ -17,6 +17,6 @@
             <input type="password" id="confirm-new_password" name="confrim-new_password" minlength="8" pattern="[^\s]+" required>
         </div>
     </br>
-        <button type="submit">Envoyer l'email</button>
+        <button type="submit">Changer le mot de passe</button>
     </body>
 </html>

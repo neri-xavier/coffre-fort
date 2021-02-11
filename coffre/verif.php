@@ -6,17 +6,17 @@
     <body>
         <p>saisir l'addresse mail : </p>
     </br>
-    <form action="oublie.php" method="post" class="form-verif_email">
+    <form action="mailMDP.php" method="post" class="form-verif_email">
         <div class="form-verif_email">
             <label for="email">Saisir votre email: </label>
             <input type="email" name="verif_email" id="verif_email" pattern="[^\s]+" required>
         </div>
     </br>
     <div class="form-verif_email">
-            <label for="email">Saisir votre email: </label>
+            <label for="email">Confirmer votre email: </label>
             <input type="email" name="confirm-verif_email" id="confirm-verif_email" pattern="[^\s]+" required>
         </div>
     </br>
-        <button type="submit">Changer le mot de passe</button>
+        <button type="submit">Envoyer l'email de récupération</button>
     </body>
 </html>

@@ -4,7 +4,7 @@
         <title>Page d'inscription</title>
     </head>
     <body>
-    <form action="connexionBDD.php" method="post" class="form-inscription">
+    <form action="php/connexionBDD.php" method="post" class="form-inscription">
         <div class="form-inscription">
             <label for="email">Saisir votre email: </label>
             <input type="email" name="email" id="email" pattern="[^\s]+" required>
@@ -18,6 +18,7 @@
         <button type="submit">Connexion</button>
     </form>
 </br>
+    <p><a href="inscription.php">Inscription</a></p>
     <p><a href="verif.php">Mot de passe oublié</a></p>
     </body>
 </html>

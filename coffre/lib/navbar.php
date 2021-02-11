@@ -9,6 +9,6 @@
     <ul>
         <ol><a href="../coffre/informations.php">Mes informations</a></ol>
         <ol><a href="../coffre/fichiers.php">Mes fichiers</a></ol>
-        <ol id="deco"><a href="../coffre/deconnexion.php">Deconnexion</a></ol>
+        <ol id="deco"><a href="../coffre/php/deconnexion.php">Deconnexion</a></ol>
     </ul>
 </nav>
