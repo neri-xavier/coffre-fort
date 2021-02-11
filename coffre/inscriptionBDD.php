@@ -1,13 +1,13 @@
 <?php
 include 'bdd.php';
 
-$nom = $_REQUEST['nom'];
-$prenom = $_REQUEST['prenom'];
-$email = $_REQUEST['email'];
-$tel = $_REQUEST['phone'];
-$login = $_REQUEST['login'];
-$password = $_REQUEST['password'];
-$passwordConfirm = $_REQUEST['password-confirm'];
+$nom = trim(htmlspecialchars($_REQUEST['nom']));
+$prenom = trim(htmlspecialchars($_REQUEST['prenom']));
+$email = trim(htmlspecialchars($_REQUEST['email']));
+$tel = trim(htmlspecialchars($_REQUEST['phone']));
+$login = trim(htmlspecialchars($_REQUEST['login']));
+$password = trim(htmlspecialchars($_REQUEST['password']));
+$passwordConfirm = trim(htmlspecialchars($_REQUEST['password-confirm']));
 $erreur = "";
 
 global $bdd;

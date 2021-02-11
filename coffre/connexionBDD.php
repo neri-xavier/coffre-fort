@@ -3,8 +3,8 @@ include 'bdd.php';
 
 session_start();
 
-$email=$_POST["email"];
-$password=$_POST["password"];
+$email=trim(htmlspecialchars($_POST["email"]));
+$password=trim(htmlspecialchars($_POST["password"]));
 
 global $bdd;
 
