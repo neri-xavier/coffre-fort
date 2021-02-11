@@ -25,6 +25,11 @@
             <input type="password" id="pass" name="password" minlength="8" required>
         </div>
     </br>
+    <div class="form-password-confirm">
+            <label for="pass">Password (8 characters minimum):</label>
+            <input type="password" id="pass-confirm" name="password-confirm" minlength="8" required>
+        </div>
+    </br>
         <button type="submit">Inscription</button>
     </form>
     </body>
