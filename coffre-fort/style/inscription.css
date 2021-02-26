@@ -3,39 +3,33 @@
 .container
 {
     text-align: center;
-    background-color: #cceeff;
+    border-radius: 25px;
+    border: none;
     margin-top: 5%;
     display: flex;
     flex-direction: column;
     width: 30%;
-    margin-right:35%;
-    margin-left: 35%;
+    margin-left: 65%;
     padding-top: 2%;
-    padding-bottom: 1,5%;
-    border: 2px solid;
-    border-color: #0066ff;
+    border-radius: 2%;
+    background-color: white;
 }
 .inscription
 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 10%;
-    padding-right: 10%;
+    height: 65px;
+}
+input
+{
+    width: 80%;
+    height: 45px;
 }
 button
 {
-    background-color: #99ddff;
-    border-color:#0066ff;
-    width: 20%;
-    height: 10%;
-    border-radius: 10%;
-    color: #3366cc;
-    margin-top: 5%;
-}
-label
-{
-    color: #3366cc;
+    background: linear-gradient(#0066cc, #66ccff);
+    width: 80%;
+    height: 60px;
+    border-radius: 25px;
+    border: none;
 }
 a
 {
@@ -46,4 +40,14 @@ a
 .liens
 {
     margin-top: 5%;
+}
+#text-inscription
+{
+    font-size: 25px;
+}
+html
+{
+    background-image: url("../fond-secu.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 1000px;
 }
