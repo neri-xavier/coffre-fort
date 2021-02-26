@@ -80,7 +80,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 if($erreur != ""){
     $_SESSION['erreurInscription'] = $erreur;
-    error_log($_SESSION['erreurInscription']);
     header("Location:http://localhost/coffre-fort/inscription.php");
 }
 ?>
