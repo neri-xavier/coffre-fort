@@ -1,5 +1,13 @@
 <?php
 include 'php/verifConnexion.php';
+
+if(isset($_SESSION['erreurMDP'])){
+    $_SESSION['erreurMDP'] = "";
+}
+
+if(isset($_SESSION['erreurConnexion'])){
+    $_SESSION['erreurConnexion'] = "";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +42,7 @@ include 'php/verifConnexion.php';
                     <input type="password" id="password-confirm" name="password-confirm" minlength="8" placeholder="confirmer le mot de passe"pattern="[^\s]+" required>
                 </div>
             </br>
+            <?php if(isset($_SESSION['erreurInscription'])) { echo '<span style="color:red">'.$_SESSION['erreurInscription'].'</span>'; } else { echo ""; } ?>
             <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
                 <button type="submit"><div id="text-inscription">Inscription</div></button>
             </form>
@@ -42,11 +51,11 @@ include 'php/verifConnexion.php';
     <script src="https://www.google.com/recaptcha/api.js?render=6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn"></script>
     <script>
 
-grecaptcha.ready(function() {
-    grecaptcha.execute('6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn', {action: 'homepage'}).then(function(token) {
-        document.getElementById('recaptchaResponse').value = token
-    });
-});
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn', {action: 'homepage'}).then(function(token) {
+                document.getElementById('recaptchaResponse').value = token
+            });
+        });
 
   </script>
             <div class="liens">

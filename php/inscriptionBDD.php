@@ -1,6 +1,8 @@
 <?php
 include 'bdd.php';
 
+session_start();
+
 // On vérifie que la méthode POST est utilisée
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($_POST['recaptcha-response'])){
@@ -27,43 +29,58 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }else{
             $data = json_decode($response);
             if($data->success){
-                $nom = trim(htmlspecialchars($_REQUEST['nom']));
-                $prenom = trim(htmlspecialchars($_REQUEST['prenom']));
-                $email = trim(htmlspecialchars($_REQUEST['email']));
-                $tel = trim(htmlspecialchars($_REQUEST['phone']));
-                $password = trim(htmlspecialchars($_REQUEST['password']));
-                $passwordConfirm = trim(htmlspecialchars($_REQUEST['password-confirm']));
-                $erreur = "";
 
-                global $bdd;
+                if(
+                    isset($_REQUEST['nom']) && !empty($_REQUEST['nom']) &&
+                    isset($_REQUEST['prenom']) && !empty($_REQUEST['prenom']) &&
+                    isset($_REQUEST['email']) && !empty($_REQUEST['email']) &&
+                    isset($_REQUEST['phone']) && !empty($_REQUEST['phone']) &&
+                    isset($_REQUEST['password']) && !empty($_REQUEST['password']) &&
+                    isset($_REQUEST['password']) && !empty($_REQUEST['password'])
+                ){
+                    $nom = trim(htmlspecialchars($_REQUEST['nom']));
+                    $prenom = trim(htmlspecialchars($_REQUEST['prenom']));
+                    $email = trim(htmlspecialchars($_REQUEST['email']));
+                    $tel = trim(htmlspecialchars($_REQUEST['phone']));
+                    $password = trim(htmlspecialchars($_REQUEST['password']));
+                    $passwordConfirm = trim(htmlspecialchars($_REQUEST['password-confirm']));
+                    $erreur = "";
 
-                if($password==$passwordConfirm){
-                    $testMail=$bdd->prepare("SELECT id FROM users where email=? limit 1");
-                    $testMail->execute(array($email));
-                    $tab=$testMail->fetchAll();
-                    if(count($tab)>0){
-                        $erreur = "L'adresse email est déjà utilisé !";
-                    }
+                    global $bdd;
 
-                    if($erreur == ""){
-                        $addUser = $bdd->prepare("INSERT INTO users (nom,prenom,email,tel,password) values(?,?,?,?,?)");
-                        if($addUser->execute(array($nom,$prenom,$email,$tel,password_hash($password, PASSWORD_BCRYPT)))){
-                            header("location:../connexion.php");
-                        };
+                    if($password==$passwordConfirm){
+                        $testMail=$bdd->prepare("SELECT id FROM users where email=? limit 1");
+                        $testMail->execute(array($email));
+                        $tab=$testMail->fetchAll();
+                        if(count($tab)>0){
+                            $erreur = "L'adresse email est déjà utilisé !";
+                        }
+
+                        if($erreur == ""){
+                            $addUser = $bdd->prepare("INSERT INTO users (nom,prenom,email,tel,password) values(?,?,?,?,?)");
+                            if($addUser->execute(array($nom,$prenom,$email,$tel,password_hash($password, PASSWORD_BCRYPT)))){
+                                header("location:../connexion.php");
+                            };
+                        }
                     }else{
-                        header("Location:http://localhost/coffre-fort/inscription.php");
-                        //header("location:../index.php");
+                        $erreur = "Les mots de passe ne correspondent pas.";
                     }
                 }else{
-                    header("location:../index.php");
+                    $erreur = "Veuillez renseigner tous les champs.";
                 }
             }else{
-                header("location:../index.php");
+                $erreur = "Vous êtes un robot.";
             }
         }
     }
 }else{
     http_response_code(405);
     echo 'Méthode non autorisée';
+}
+
+if($erreur != ""){
+    $_SESSION['erreurInscription'] = $erreur;
+    error_log($_SESSION['erreurInscription']);
+    header("Location:http://localhost/coffre-fort/inscription.php");
 }
 ?>
