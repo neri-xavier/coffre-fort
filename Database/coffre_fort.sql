@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 22 fév. 2021 à 13:26
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  mar. 02 mars 2021 à 09:51
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,14 +36,6 @@ CREATE TABLE IF NOT EXISTS `fichiers` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `fichiers`
---
-
-INSERT INTO `fichiers` (`id`, `id_user`, `nom`) VALUES
-('e9c7c915e32bc0a7dba6dae62c73664a', 15, 'sendmail.ini'),
-('61f7bf09ef1bd6330141d6055d7e585b', 15, 'FFOM Lambin Julien.docx');
-
 -- --------------------------------------------------------
 
 --
@@ -55,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `recuperation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `code` int(11) NOT NULL,
-  `confirme` int(11) NOT NULL DEFAULT '0',
+  `confirme` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
@@ -68,24 +60,16 @@ CREATE TABLE IF NOT EXISTS `recuperation` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(35) NOT NULL,
-  `prenom` varchar(35) NOT NULL,
-  `email` varchar(45) NOT NULL,
+  `nom` varchar(55) NOT NULL,
+  `prenom` varchar(55) NOT NULL,
+  `email` varchar(75) NOT NULL,
   `tel` int(11) NOT NULL,
-  `password` varchar(150) NOT NULL,
-  `new_password` int(1) NOT NULL DEFAULT '0',
+  `password` varchar(255) NOT NULL,
+  `new_password` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `tel`, `password`, `new_password`) VALUES
-(15, 'LAMBIN', 'Julien', 'julien59155@gmail.com', 750415911, '$2y$10$P.0kWzykKRa2BpEQaKIwZedc.f1dGR29o6UERHDBT5n5vTkSs3Uqe', 1),
-(16, 'test', 'test', 'test@gmail', 856565656, '$2y$10$wUSD59rn7nuDDlGCmCg29.SlrIvHiBI8bR3stjVeFTBimCH4wwQRa', 0),
-(17, 'LAMBIN', 'ISABELLE', 'uiadzhaui@jhafiu', 678787878, '$2y$10$9tyMvs4tLB6mUP7wbRaReuzr4mrYG51qYR2vk4Vu8bmQamo9plIi2', 0);
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `tel` (`tel`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
