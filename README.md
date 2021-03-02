@@ -5,7 +5,7 @@
 ## Récupération du projet
 Créer un dossier coffre-fort.
 Faite un git clone du projet :
-''' git clone https://github.com/neri-xavier/coffre-fort.git '''
+``` git clone https://github.com/neri-xavier/coffre-fort.git ```
 
 Pour récupérer la base de données, créer une base de données « coffre_fort ». Ensuite ouvrez le dossier « Installation », puis Database et insérez dans votre nouvelle base de données le fichier « coffre_fort.sql »
 
