@@ -4,6 +4,7 @@
 
 ## Récupération du projet
 Créer un dossier coffre-fort.
+
 Faite un git clone du projet :
 ``` git clone https://github.com/neri-xavier/coffre-fort.git ```
 
