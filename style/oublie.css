@@ -14,10 +14,6 @@
     border-radius: 2%;
     background-color: white;
 }
-.connexion
-{
-    height: 300px;
-}
 input
 {
     width: 80%;
@@ -31,25 +27,13 @@ button
     border-radius: 25px;
     border: none;
 }
-a
-{
-    text-decoration: none;
-    color: #3366cc;
-}
-.liens
-{
-    display:flex;
-    justify-content: space-between;
-    padding-left: 10%;
-    padding-right: 10%;
-}
 html
 {
     background-image: url("../fond-secu.jpg");
     background-repeat: no-repeat;
     background-size: 100% 1000px;
 }
-#text-connexion
+#text-confirmation
 {
     font-size: 25px;
 }
