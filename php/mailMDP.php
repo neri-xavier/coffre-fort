@@ -76,7 +76,7 @@ if(isset($_POST['recup_submit'],$_POST['verif_email'],$_POST['confirm_verif_emai
             $_SESSION['erreurMDP'] = "";
             die;
          }else{
-            $error = "Erreur lors de l'envoi de l'email"
+            $error = "Erreur lors de l'envoi de l'email";
          }
          } else {
             $error = "Cette adresse mail n'est pas enregistrée";
