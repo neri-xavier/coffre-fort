@@ -7,7 +7,6 @@ session_start();
 ?>
 <nav>
     <ul>
-        <ol><a href="../coffre-fort/informations.php">Mes informations</a></ol>
         <ol><a href="../coffre-fort/fichiers.php">Mes fichiers</a></ol>
         <ol id="deco"><a href="../coffre-fort/php/deconnexion.php">Deconnexion</a></ol>
     </ul>
