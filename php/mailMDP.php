@@ -71,10 +71,13 @@ if(isset($_POST['recup_submit'],$_POST['verif_email'],$_POST['confirm_verif_emai
          </body>
          </html>
          ';
-         mail($recup_mail, "Récupération de mot de passe - Coffre-Fort", $message, $header);
+         if(mail($recup_mail, "Récupération de mot de passe - Coffre-Fort", $message, $header)){
             header("Location:http://localhost/coffre-fort/recuperation.php?section=code");
             $_SESSION['erreurMDP'] = "";
             die;
+         }else{
+            $error = "Erreur lors de l'envoi de l'email"
+         }
          } else {
             $error = "Cette adresse mail n'est pas enregistrée";
          }

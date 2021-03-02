@@ -31,7 +31,7 @@ if(isset($_SESSION['erreurInscription'])){
                 <?php if(isset($_SESSION['erreurConnexion'])) { echo '<span style="color:red">'.$_SESSION['erreurConnexion'].'</span>'; } else { echo ""; } ?>
                     <div class="liens">
                         <p><a href="inscription.php">Inscription</a></p>
-                        <p><a href="verif.php">Mot de passe oublié</a></p>
+                        <p><a href="recuperation.php">Mot de passe oublié</a></p>
                     </div>
                     <button type="submit"><div id="text-connexion">Connexion</div></button>
                 </form>

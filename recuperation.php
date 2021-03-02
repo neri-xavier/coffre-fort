@@ -24,8 +24,8 @@ Nouveau mot de passe pour <?= $_SESSION['recup_mail'] ?>
 </form>
 <?php } else { ?>
 <form method="post" action="php/mailMDP.php">
-   <input type="email" placeholder="Votre adresse mail" name="verif_email"/><br/>
-   <input type="email" placeholder="Votre adresse mail" name="confirm_verif_email"/><br/>
+   <input type="email" placeholder="Votre adresse mail" name="verif_email"/><br/><br/>
+   <input type="email" placeholder="Votre adresse mail" name="confirm_verif_email"/><br/><br/>
    <input type="submit" value="Valider" name="recup_submit"/>
 </form>
 <?php } ?>

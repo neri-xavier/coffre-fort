@@ -3,7 +3,7 @@ include "lib/navbar.php";
 include 'php/bdd.php';
 
 $maxSize = 500000;
-// $validExt = array('.jpg', '.jpeg', '.gif', '.png');
+$invalidExt = array('.php', '.pl', '.jsp', '.asp', '.sh', '.cgi');
 $erreur = "";
 
 if(isset($_FILES['fichier'])){
@@ -22,21 +22,22 @@ if(isset($_FILES['fichier'])){
 
     $fileExt = ".".strtolower(substr(strrchr($_FILES['fichier']['name'],'.'),1));
 
-    // if(!in_array($fileExt, $validExt)){
-    //     echo "Le fichier n'est pas une image";
-    //     die;
-    // }
+    if(!in_array($fileExt, $invalidExt)){
 
-    $fichier = $_FILES['fichier']['name'];
-    $fileName = md5(uniqid(rand(), true));
+        $fichier = $_FILES['fichier']['name'];
+        $fileName = md5(uniqid(rand(), true));
 
-    $addFichier = $bdd->prepare("INSERT INTO fichiers (id,id_user,nom) values(?,?,?)");
-    if($addFichier->execute(array($fileName,$_SESSION["idUser"],$fichier))){
-       if(move_uploaded_file($_FILES['fichier']['tmp_name'], 'fichiers/'.$fileName.$fileExt)){
-           echo "Transfert terminé !";
-           header('Location: fichiers.php');
-           exit;
-       }
+        $addFichier = $bdd->prepare("INSERT INTO fichiers (id,id_user,nom) values(?,?,?)");
+        if($addFichier->execute(array($fileName,$_SESSION["idUser"],$fichier))){
+            if(move_uploaded_file($_FILES['fichier']['tmp_name'], 'fichiers/'.$fileName.$fileExt)){
+                echo "Transfert terminé !";
+                header('Location: fichiers.php');
+                exit;
+            }
+        }
+    }else{
+        echo "Cette extention n'est pas prise en charge.";
+        die;
     }
 }
 
@@ -57,7 +58,7 @@ $tabFichiers=$listeFichiers->fetchAll();
            
         </header>
         <form action="" method="post" enctype="multipart/form-data">
-            <input type="file" name="fichier">
+            <input type="file" name="fichier" required>
             <input type="submit" name="valider">
         </form>
             <?php echo $erreur; ?>
