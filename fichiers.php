@@ -30,13 +30,16 @@ if(isset($_FILES['fichier'])){
         $addFichier = $bdd->prepare("INSERT INTO fichiers (id,id_user,nom) values(?,?,?)");
         if($addFichier->execute(array($fileName,$_SESSION["idUser"],$fichier))){
             if(move_uploaded_file($_FILES['fichier']['tmp_name'], 'fichiers/'.$fileName.$fileExt)){
-                echo "Transfert terminé !";
+                $erreur = "Transfert terminé !";
+                $_SESSION["msgFichier"] = $erreur;
                 header('Location: fichiers.php');
                 exit;
             }
         }
     }else{
-        echo "Cette extention n'est pas prise en charge.";
+        $erreur = "Cette extention n'est pas prise en charge.";
+        $_SESSION["msgFichier"] = $erreur;
+        header('Location: fichiers.php');
         die;
     }
 }
@@ -61,7 +64,7 @@ $tabFichiers=$listeFichiers->fetchAll();
             <input type="file" name="fichier" required>
             <input type="submit" name="valider">
         </form>
-            <?php echo $erreur; ?>
+            <?php if(isset($_SESSION["msgFichier"])){ echo '<span style="color:red">'.$_SESSION['msgFichier'].'</span>';}else{echo "";} ?>
         <br/>
         <?php
             foreach($tabFichiers as $key => $value){
