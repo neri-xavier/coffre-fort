@@ -71,6 +71,8 @@ $tabFichiers=$listeFichiers->fetchAll();
         ?>
         
             <a href="php/telechargement.php?id=<?php echo $value["id"]; ?>&nom=<?php echo $value["nom"]; ?>&ext=<?php echo ".".strtolower(substr(strrchr($value["nom"],'.'),1)); ?>"><?php echo $value["nom"]; ?></a>
+            
+            <a href="php/supprimer.php?id=<?php echo $value["id"]; ?>&nom=<?php echo $value["nom"]; ?>&ext=<?php echo ".".strtolower(substr(strrchr($value["nom"],'.'),1)); ?>"><button>Supprimer</button></a>
             <br/>
         <?php
             }

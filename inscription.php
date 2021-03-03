@@ -17,7 +17,7 @@ if(isset($_SESSION['erreurConnexion'])){
     </head>
     <body>
         <div class="container">
-            <form action="php/inscriptionBDD.php" method="post" class="form-inscription">
+            <form action="php/inscriptionBDD.php" id="formInscription" method="post" class="form-inscription">
                 <div class="inscription">
                     <input type="text" name="nom" id="nom" placeholder="Saisir votre nom" pattern="[^\s]+" required>
                 </div>
@@ -48,16 +48,16 @@ if(isset($_SESSION['erreurConnexion'])){
             </form>
        
     
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn"></script>
-    <script>
+            <script src="https://www.google.com/recaptcha/api.js?render=6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn"></script>
+            <script>
 
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn', {action: 'homepage'}).then(function(token) {
-                document.getElementById('recaptchaResponse').value = token
-            });
-        });
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn', {action: 'homepage'}).then(function(token) {
+                        document.getElementById('recaptchaResponse').value = token
+                    });
+                });
 
-  </script>
+            </script>
             <div class="liens">
                 <p><a href="connexion.php">Connexion</a></p>
             </div>

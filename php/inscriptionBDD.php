@@ -6,7 +6,9 @@ session_start();
 // On vérifie que la méthode POST est utilisée
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($_POST['recaptcha-response'])){
-        header('Location: ../index.php');
+        $_SESSION['erreurInscription'] = "Vous êtes un robot !";
+        header("Location:http://localhost/coffre-fort/inscription.php");
+        die;
     }else{
         // On prépare l'URL
         $url = "https://www.google.com/recaptcha/api/siteverify?secret=6LdsjloaAAAAADXfXRkrzlLuIyDipTqzbCkWOIqR&response={$_POST['recaptcha-response']}";
@@ -41,10 +43,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $nom = trim(htmlspecialchars($_REQUEST['nom']));
                     $prenom = trim(htmlspecialchars($_REQUEST['prenom']));
                     $email = trim(htmlspecialchars($_REQUEST['email']));
-                    $tel = trim(htmlspecialchars($_REQUEST['phone']));
+                    $tel = preg_replace('/[^0-9]/', '',trim(htmlspecialchars($_REQUEST['phone'])));
                     $password = trim(htmlspecialchars($_REQUEST['password']));
                     $passwordConfirm = trim(htmlspecialchars($_REQUEST['password-confirm']));
                     $erreur = "";
+
+                    if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email)){
+                        $_SESSION['erreurInscription'] = "Le format de l'addresse mail n'est pas correct !";
+                        header("Location:http://localhost/coffre-fort/inscription.php");
+                        die;
+                    }
 
                     global $bdd;
 
@@ -69,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $erreur = "Veuillez renseigner tous les champs.";
                 }
             }else{
-                $erreur = "Vous êtes un robot.";
+                $erreur = "Vous avez dépassé le temps de validité du formulaire, veuillez réessayer.";
             }
         }
     }

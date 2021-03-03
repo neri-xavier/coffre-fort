@@ -33,6 +33,9 @@ include 'php/verifConnexion.php'
             </form>
         <?php } ?>
             <?php if(isset($_SESSION['erreurMDP'])) { echo '<span style="color:red">'.$_SESSION['erreurMDP'].'</span>'; } else { echo ""; } ?>
+            <div class="liens">
+                <p><a href="connexion.php">Connexion</a></p>
+            </div>
         </div> 
     </body>
 </html>
