@@ -21,7 +21,7 @@ Rechercher "mail function"
 
 ![image](https://user-images.githubusercontent.com/51157220/109821743-95e7b280-7c36-11eb-9668-0704aa5ee330.png)
 
-Puis remplacer la configuration par défaut avec cette nouvelle configuration :
+Puis remplacez la configuration par défaut avec cette nouvelle configuration :
 
 ```
 [mail function]
