@@ -44,12 +44,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $prenom = trim(htmlspecialchars($_REQUEST['prenom']));
                     $email = trim(htmlspecialchars($_REQUEST['email']));
                     $tel = preg_replace('/[^0-9]/', '',trim(htmlspecialchars($_REQUEST['phone'])));
-                    $password = trim(htmlspecialchars($_REQUEST['password']));
-                    $passwordConfirm = trim(htmlspecialchars($_REQUEST['password-confirm']));
+                    $password = $_REQUEST['password'];
+                    $passwordConfirm = $_REQUEST['password-confirm'];
                     $erreur = "";
 
                     if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email)){
                         $_SESSION['erreurInscription'] = "Le format de l'addresse mail n'est pas correct !";
+                        header("Location:http://localhost/coffre-fort/inscription.php");
+                        die;
+                    }
+
+                    if(!preg_match('#^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,55})$#',$password)){
+                        $_SESSION['erreurInscription'] = "Le mot de passe doit contenir au moins 8 caractères, 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spéciaux";
                         header("Location:http://localhost/coffre-fort/inscription.php");
                         die;
                     }
@@ -62,6 +68,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         $tab=$testMail->fetchAll();
                         if(count($tab)>0){
                             $erreur = "L'adresse email est déjà utilisé !";
+                        }
+
+                        $testPhone=$bdd->prepare("SELECT id FROM users where tel=? limit 1");
+                        $testPhone->execute(array($tel));
+                        $tab=$testPhone->fetchAll();
+                        if(count($tab)>0){
+                            $erreur = "Le numéro de téléphone est déjà utilisé !";
                         }
 
                         if($erreur == ""){
