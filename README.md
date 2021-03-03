@@ -12,3 +12,6 @@ Pour récupérer la base de données, créer une base de données « coffre_fort
 
 ## Sendmail
 Afin de tester la récupération de mot de passe et l’envoi de mail vous aller devoir installer « Sendmail ». Pour cela rendez-vous dans le dossier « Installation », puis copiez collez le dossier « sendmail » dans le dossier « wamp64 ».
+
+
+Si vous rencontrez des problèmes n'hésitez à nous contacter.
